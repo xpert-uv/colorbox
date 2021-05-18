@@ -1,21 +1,25 @@
 import React, { useState } from 'react'
 import '../css/form.css'
 const NewBoxForm = ({ divData }) => {
-    const initialState = {
+    const initialState = [{
         width: "",
         height: "",
         bgColor: ""
-    }
+    }]
     const [formData, setFormData] = useState(initialState);
+
     const handleChange = (e) => {
+        const { name, value } = e.target;
         setFormData(formData => ({
             ...formData,
-            [e.target.name]: e.target.value
+            [name]: value
         }));
     }
+
+
     const handleSubmit = (e) => {
         e.preventDefault();
-        divData(formData);
+        divData(formData.bgColor, formData.width, formData.height);
         setFormData(initialState);
 
     }
